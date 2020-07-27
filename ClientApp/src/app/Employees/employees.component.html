@@ -1,0 +1,28 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <td>Id</td>
+      <td>Name</td>
+      <td>Email</td>
+      <td>Contact</td>
+      <td>JobTitle</td>
+      <td>Location</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let emp of empList">
+      <td>{{emp.id}}</td>
+      <td>{{emp.name}}</td>
+      <td>{{emp.email}}</td>
+      <td>{{emp.contact}}</td>
+      <td>{{emp.jobTitle}}</td>
+      <td>{{emp.location}}</td>
+      <td>
+        <i (click)="onEdit(emp.id)">EDIT</i>
+      </td>
+      <td>
+        <i (click)="onDelete(emp.id)">DElETE</i>
+      </td>
+    </tr>
+  </tbody>
+</table>

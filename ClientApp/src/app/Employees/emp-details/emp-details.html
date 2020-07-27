@@ -1,0 +1,56 @@
+  
+    <div class="bg-white pb-0">
+      <form [formGroup]="form">
+        <div class="d-flex flex-wrap pt-3 ml-4 rca-details pr-3">
+          <div class="padding-0">
+            <div class="td-input form-group">
+              <label class="mx-1">Name</label>
+              <input type="text" class="form-control" formControlName="name" />
+            </div>
+            <div *ngIf="submitted && form.controls.name.errors" class="invalid-feedback d-block ml-3">
+              <div *ngIf="form.controls.name.errors.required">Please provide Name</div>
+            </div>
+          </div>
+          <div class="padding-0">
+            <div class="td-input form-group">
+              <label class="mx-1">Email</label>
+              <input type="text" class="form-control" formControlName="email" />
+            </div>
+            <div *ngIf="submitted && form.controls.email.errors" class="invalid-feedback d-block ml-3">
+              <div *ngIf="form.controls.name.errors.required">Please provide email</div>
+            </div>
+          </div>
+          <div class="padding-0">
+            <div class="td-input form-group">
+              <label class="mx-1">Contact</label>
+              <input type="text" class="form-control" formControlName="contact" />
+            </div>
+            <div *ngIf="submitted && form.controls.contact.errors" class="invalid-feedback d-block ml-3">
+              <div *ngIf="form.controls.name.errors.required">Please provide contact</div>
+            </div>
+          </div>
+          <div class="padding-0">
+            <div class="td-input form-group">
+              <label class="mx-1">JobTitle</label>
+              <input type="text" class="form-control" formControlName="jobTitle" />
+            </div>
+            <div *ngIf="submitted && form.controls.displayName.errors" class="invalid-feedback d-block ml-3">
+              <div *ngIf="form.controls.name.errors.required">Please provide job title</div>
+            </div>
+          </div>
+          <div class="padding-0">
+            <div class="td-input form-group">
+              <label class="mx-1">Location</label>
+              <input type="text" class="form-control" formControlName="location" />
+            </div>
+            <div *ngIf="submitted && form.controls.displayName.errors" class="invalid-feedback d-block ml-3">
+              <div *ngIf="form.controls.name.errors.required">Please provide Location</div>
+            </div>
+          </div>
+          <div class="col-12 mt-5 mb-2">
+              <button (click)="onSubmit()" class="td-button td-button-success">SUBMIT</button>
+            </div>
+            </div>
+</form>
+      </div>
+  
