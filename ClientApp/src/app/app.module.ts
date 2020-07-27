@@ -14,6 +14,9 @@ import { HomeComponent } from './home/home.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { EmployeeDetailComponent } from './Employees/emp-details/emp-details.component';
 import { EmployeesListComponent } from './Employees/employees.component';
+import { NgProgressModule } from 'ngx-progressbar';
+import { BrowserXhr } from '@angular/http';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +35,7 @@ import { EmployeesListComponent } from './Employees/employees.component';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NgProgressModule
   
     //ToastrModule.forRoot({
     //  progressBar: true
@@ -41,7 +45,7 @@ import { EmployeesListComponent } from './Employees/employees.component';
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  }],
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

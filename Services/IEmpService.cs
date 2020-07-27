@@ -9,9 +9,10 @@ namespace EmpManagement.Services
     public interface IEmpService
     {
         Task<Employee> Add(Employee company);
-        Task<Employee> Update(Employee cm, int id);
+        Employee Update(Employee cm);
         Task<Employee> Delete(int id);
         Task<List<Employee>> GetAll();
+        //Task<Employee> GetById(int id);
         Employee GetById(int id);
     }
 }

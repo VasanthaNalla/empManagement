@@ -25,9 +25,10 @@ namespace EmpManagement.Controllers
         // GET 
         [Authorize]
         [HttpGet("{id}")]
-        public  Employee Get(int id)
+        // public async  Task<ActionResult<Employee>> Get(int id)
+        public  ActionResult<Employee> Get(int id)
         {
-            return EmployeeService.GetById(id);
+            return  EmployeeService.GetById(id);
         }
 
         // GET All
@@ -50,10 +51,10 @@ namespace EmpManagement.Controllers
 
         // PUT api/<ValuesController>/5
         [Authorize]
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Employee cm)
+        [HttpPut]
+        public ActionResult<Employee> Put([FromBody] Employee emp)
         {
-            return Ok(await EmployeeService.Update(cm, id));
+            return EmployeeService.Update(emp);
 
         }
 

@@ -18,7 +18,7 @@ namespace EmpManagement.Services
         {
             try
             {
-                return  Db.Employees.ToList();
+                return Db.Employees.ToList();
             }
             catch (Exception ex)
             {
@@ -26,11 +26,12 @@ namespace EmpManagement.Services
             }
         }
 
+        //  public  async Task<Employee> GetById(int id)
         public Employee GetById(int id)
         {
             try
             {
-                return  Db.Employees.Where(c=>c.Id==id).FirstOrDefault(); 
+                return Db.Employees.FirstOrDefault(c => c.Id == id);
             }
             catch (Exception ex)
             {
@@ -54,17 +55,44 @@ namespace EmpManagement.Services
 
         }
 
-        public async Task<Employee> Update(Employee emp, int id)
+        //public async Task<Employee> Update(Employee emp, int id)
+        //{
+        //    try
+        //    {
+
+        //        var employee = Db.Employees.Find(id);
+        //        if (employee == null)
+        //            return null;
+
+        //        Db.Update(employee);
+        //        // await Db.SaveChangesAsync();
+        //        Db.SaveChanges();
+
+        //        return employee;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return null;
+        //    }
+        //}
+
+        public Employee Update(Employee emp)
         {
             try
             {
+                var employee = Db.Employees.Find(emp.Id);
+                if (employee != null)
+                {
+                    employee.Name = emp.Name;
+                    employee.Location = emp.Location;
+                    employee.JobTitle = emp.JobTitle;
+                    employee.Contact = emp.Contact;
+                    employee.Email = emp.Email;
+                    Db.Update(employee);
+                    // await Db.SaveChangesAsync();
+                    Db.SaveChanges();
+                }
 
-                var employee = Db.Employees.Find(id);
-                if (employee == null)
-                    return null;
-
-                Db.Update(employee);
-                await Db.SaveChangesAsync();
 
                 return employee;
             }
@@ -81,9 +109,9 @@ namespace EmpManagement.Services
                 {
                     return null;
                 }
-               
+
                 Db.Add(emp);
-              await  Db.SaveChangesAsync();
+                await Db.SaveChangesAsync();
 
                 return emp;
             }

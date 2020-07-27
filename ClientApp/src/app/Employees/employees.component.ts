@@ -25,18 +25,24 @@ export class EmployeesListComponent implements OnInit {
   onEdit(id: number) {
     this.router.navigate(['/empEdit/',id]);  
   }
+  onLogout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/user/login']);
+  }
 
   onDelete(id: number) {
     if (confirm('Are you sure to delete this record ?')) {
       this.service.deleteEmployee(id)
         .subscribe(res => {
+          this.getEmpList();
+          this.getEmpList();
           //this.toastr.warning('Deleted successfully', 'Payment Detail Register');
         },
           err => {
             console.log(err);
           })
     }
-    this.getEmpList();
+
   }
 
 }

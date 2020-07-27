@@ -1,12 +1,16 @@
 <nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand text-white">JWT Auth System</a>
+  <a class="navbar-brand text-white">UserDetails</a>
   <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button>
 </nav>
 
-<div class="card m-5" style="width:18rem" *ngIf="userDetails">
+<div class="card mx-auto mt-5" style="width:18rem" *ngIf="userDetails">
   <ul class="list-group">
     <li class="list-group-item"><strong>Username : </strong>{{userDetails.userName}}</li>
     <li class="list-group-item"><strong>FullName : </strong>{{userDetails.fullName}}</li>
     <li class="list-group-item"><strong>Email : </strong>{{userDetails.email}}</li>
   </ul>
+</div>
+<div class="text-center mt-5">
+  <button [routerLink]="['/empDetails']" class="m-2"><strong>AddEmployee</strong></button>
+  <button [routerLink]="['/empList']" class="m-2"><strong>ViewEmployeeList</strong></button>
 </div>

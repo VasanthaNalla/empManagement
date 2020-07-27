@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EmployeeService } from '../../services/employeeService';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from '../../Models/employee.model';
 
 @Component({
@@ -16,19 +16,40 @@ export class EmployeeDetailComponent implements OnInit {
   id: string;
   isNewEmp: boolean;
   emp: Employee = new Employee();
-  public employee;
+  employee: Employee = new Employee();
   constructor(private service: EmployeeService,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
-      this.service.getEmployee(this.id).subscribe(data => this.employee = data);
+      this.service.getEmployee(this.id).subscribe(data => {
+        // this.employee=   data;
+        // console.log(data);
+        // console.log(this.employee );
+        //this.form = this.getformConfig();
+        debugger;
+        this.form.patchValue({
+          name: data.name,
+          email: data.email,
+          contact: data.contact,
+          jobTitle: data.jobTitle,
+          location: data.location
+        });
+      }
+      );
     } else {
       this.isNewEmp = true;
+      this.form = this.getformConfig();
     }
     this.form = this.getformConfig();
+  }
+
+  onLogout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/user/login']);
   }
 
   getformConfig() {
@@ -56,16 +77,19 @@ export class EmployeeDetailComponent implements OnInit {
 
   onSubmit() {
     this.setEmp();
-    if (!this.id)
-      this.insertRecord(this.emp);
-    else
-      this.updateRecord(this.emp);
-    this.form.reset();
+    if (this.form.valid) {
+      if (!this.id)
+        this.insertRecord(this.emp);
+      else
+        this.updateRecord(this.emp);
+    } else { return false; }
   }
 
   insertRecord(emp: Employee) {
     this.service.addEmployee(emp).subscribe(
       res => {
+        this.form.reset();
+        this.router.navigate(['/empList']);
         //this.toastr.success('Submitted successfully', 'Payment Detail Register');
       },
       err => {
@@ -75,9 +99,12 @@ export class EmployeeDetailComponent implements OnInit {
     )
   }
   updateRecord(emp: Employee) {
+    emp.Id = Number(this.id);
     this.service.updateEmployee(emp).subscribe(
       res => {
-       // this.toastr.info('Submitted successfully', 'Payment Detail Register');
+        this.form.reset();
+        this.router.navigate(['/empList']);
+        // this.toastr.info('Submitted successfully', 'Payment Detail Register');
       },
       err => {
         console.log(err);
