@@ -42,8 +42,11 @@
     <None Remove="ClientApp\src\app\Employees\emp-details\emp-details.component.ts" />
     <None Remove="ClientApp\src\app\Employees\employees.component.ts" />
     <None Remove="ClientApp\src\app\home\home.component.ts" />
+    <None Remove="ClientApp\src\app\Loader\loader.component.ts" />
     <None Remove="ClientApp\src\app\Models\employee.model.ts" />
     <None Remove="ClientApp\src\app\services\employeeService.ts" />
+    <None Remove="ClientApp\src\app\services\loader-interceptor.service.ts" />
+    <None Remove="ClientApp\src\app\services\loader.service.ts" />
     <None Remove="ClientApp\src\app\services\userService.ts" />
     <None Remove="ClientApp\src\app\user\Login\login.component.ts" />
     <None Remove="ClientApp\src\app\user\Registration\Registration.component.ts" />
@@ -57,8 +60,11 @@
     <TypeScriptCompile Include="ClientApp\src\app\Employees\emp-details\emp-details.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Employees\employees.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\home\home.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Loader\loader.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Models\employee.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\employeeService.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\loader-interceptor.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\loader.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\userService.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\user\Login\login.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\user\Registration\registration.component.ts" />

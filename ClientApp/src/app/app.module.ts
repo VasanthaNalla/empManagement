@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +15,10 @@ import { EmployeeDetailComponent } from './Employees/emp-details/emp-details.com
 import { EmployeesListComponent } from './Employees/employees.component';
 import { NgProgressModule } from 'ngx-progressbar';
 import { BrowserXhr } from '@angular/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoaderInterceptor } from './services/loader-interceptor.service';
+import { MyLoaderComponent } from './Loader/loader.component';
+import { LoaderService } from './services/loader.service';
 
 
 @NgModule({
@@ -26,7 +29,9 @@ import { BrowserXhr } from '@angular/http';
     UserComponent,
     HomeComponent,
     EmployeeDetailComponent,
-    EmployeesListComponent
+    EmployeesListComponent,
+    MyLoaderComponent
+
   ],
   imports: [
     BrowserModule,
@@ -45,7 +50,9 @@ import { BrowserXhr } from '@angular/http';
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  },],
+  },
+    LoaderService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
